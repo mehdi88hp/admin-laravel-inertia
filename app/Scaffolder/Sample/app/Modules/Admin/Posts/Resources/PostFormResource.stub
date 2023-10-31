@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Modules\Admin\Posts\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class PostFormResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'statusOptions' => $this->getStatusOptions(),
+            'selectedAuthor' => $this->getSelectedAuthor(),
+            'authorSearchUrl' => $this->getAuthorSearchUrl(),
+            'selectedCategory' => $this->getSelectedCategory(),
+            'categorySearchUrl' => $this->getCategorySearchUrl(),
+        ];
+    }
+}

@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Scaffolder\Sample\app\Models;
+
+use App\Enums\Posts\PostStatus;
+use App\Models\Category;
+use App\Models\Traits\HasCreatorAndUpdater;
+use App\Models\Traits\HasState;
+use App\Models\User;
+use Database\Factories\PostFactory;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Post extends Model
+{
+    use HasFactory;
+    use HasState;
+    use HasCreatorAndUpdater;
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
+    protected $fillable = [
+        //
+    ];
+
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        //
+    ];
+
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        //
+    ];
+
+    /**
+     * Get status attribute as enum instance.
+     */
+    public function statusEnum(): Attribute
+    {
+        return Attribute::make(
+            fn () => PostStatus::from($this->status),
+        );
+    }
+}

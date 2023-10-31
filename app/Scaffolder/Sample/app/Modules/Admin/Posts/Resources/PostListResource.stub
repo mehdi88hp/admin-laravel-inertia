@@ -1,0 +1,32 @@
+<?php
+
+namespace App\Modules\Admin\Posts\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class PostListResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'state' => $this->state,
+            'state_enum' => $this->stateEnum,
+            'title' => $this->title,
+            'category' => $this->category?->only([
+                'id',
+                'title',
+            ]),
+            'author' => $this->author?->only([
+                'id',
+                'full_name',
+            ]),
+        ];
+    }
+}

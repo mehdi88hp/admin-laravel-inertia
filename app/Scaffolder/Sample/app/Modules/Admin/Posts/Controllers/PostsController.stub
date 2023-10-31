@@ -1,0 +1,127 @@
+<?php
+
+namespace App\Modules\Admin\Posts\Controllers;
+
+use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Modules\Admin\Posts\Forms\PostForm;
+use App\Modules\Admin\Posts\Requests\StorePostRequest;
+use App\Modules\Admin\Posts\Requests\UpdatePostRequest;
+use App\Modules\Admin\Posts\Resources\PostFormResource;
+use App\Modules\Admin\Posts\Resources\PostListResource;
+use App\Modules\Admin\Posts\Resources\PostResource;
+use App\Modules\Admin\Posts\Services\PostsService;
+use App\Services\DataTable\DataTable;
+use App\Services\Forms\FieldsResource;
+use App\Services\Forms\FormResource;
+use Illuminate\Http\Request;
+
+class PostsController extends Controller
+{
+    public function __construct(
+        protected PostsService $postsService,
+    ) {
+        //
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function columns()
+    {
+        $this->authorize('adminRead', Post::class);
+
+        return new FieldsResource(new PostForm());
+    }
+
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(Request $request)
+    {
+        $this->authorize('adminRead', Post::class);
+
+        $items = DataTable::make($this->postsService->getAdminItemsQuery($request))
+            ->filter(function ($query) {
+                // $query->where('id', 5931);
+            })
+            ->sort(function ($query) {
+                // $query->orderBy('title', 'DESC');
+            })
+            ->get();
+
+        return PostListResource::collection($items);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        $this->authorize('adminCreate', Post::class);
+
+        $form = $this->postsService->getForm();
+
+        return new FormResource(
+            new PostFormResource($form)
+        );
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    public function store(StorePostRequest $request)
+    {
+        $post = $this->postsService->store(
+            $request->validated()
+        );
+
+        return new PostResource($post);
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Post $post)
+    {
+        $this->authorize('adminRead', Post::class);
+
+        return new PostResource($post);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Post $post)
+    {
+        $this->authorize('adminUpdate', $post);
+
+        $form = $this->postsService->getForm($post);
+
+        return new FormResource(
+            new PostFormResource($form),
+            new PostResource($post),
+        );
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(UpdatePostRequest $request, Post $post)
+    {
+        $this->postsService->update(
+            $post,
+            $request->validated()
+        );
+
+        return new PostResource($post);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Post $post)
+    {
+        $this->authorize('adminDelete', $post);
+    }
+}

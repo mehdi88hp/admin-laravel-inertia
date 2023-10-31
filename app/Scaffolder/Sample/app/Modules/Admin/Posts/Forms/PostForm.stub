@@ -1,0 +1,53 @@
+<?php
+
+namespace App\Modules\Admin\Posts\Forms;
+
+use App\Enums\Posts\PostStatus;
+use App\Services\Forms\Fields\ID;
+use App\Services\Forms\Fields\RemoteSelect;
+use App\Services\Forms\Fields\Select;
+use App\Services\Forms\Fields\Text;
+use App\Services\Forms\Form;
+
+class PostForm extends Form
+{
+    public function fields()
+    {
+        return %form_fields%;
+    }
+
+    public function getStatusOptions()
+    {
+        return PostStatus::options();
+    }
+
+    public function getSelectedAuthor()
+    {
+        return $this->getModel()
+            ?->author
+            ->only([
+                'id',
+                'full_name',
+            ]);
+    }
+
+    public function getAuthorSearchUrl()
+    {
+        return 'https://google.com/users';
+    }
+
+    public function getSelectedCategory()
+    {
+        return $this->getModel()
+            ?->author
+            ->only([
+                'id',
+                'title',
+            ]);
+    }
+
+    public function getCategorySearchUrl()
+    {
+        return 'https://google.com/categories';
+    }
+}

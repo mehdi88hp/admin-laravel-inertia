@@ -1,0 +1,163 @@
+<?php
+
+namespace Tests\Feature\Modules\Admin\Posts\Controllers;
+
+use App\Enums\Core\RoleId;
+use App\Models\Post;
+use Database\Factories\PostFactory;
+use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
+
+class PostsControllerTest extends TestCase
+{
+    use DatabaseTransactions, WithFaker;
+
+    public function __construct(string $name)
+    {
+        parent::__construct($name);
+    }
+
+    public function testShow()
+    {
+
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.read')
+            ->signIn();
+
+        $post = PostFactory::new()->user($this->user)->create();
+
+        $response = $this->get('/admin/posts/' . $post->id);
+
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            isset($response->json()['data'])
+        );
+    }
+
+    public function testCreate()
+    {
+        $response = $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.create')
+            ->signIn()
+            ->get('/admin/posts/create');
+//
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            isset($response->json()['form']['statusOptions'])
+        );
+
+    }
+
+    public function testColumns()
+    {
+        $response = $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.read')
+            ->signIn()
+            ->get('/admin/posts/columns');
+
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            isset($response->json()['data']['fields'])
+        );
+
+    }
+
+
+    public function testEdit()
+    {
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.update')
+            ->signIn();
+
+        $post = PostFactory::new()->user($this->user)->create();
+
+        $response = $this
+            ->get('/admin/posts/' . $post->id . '/edit');
+
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            isset($response->json()['form']['statusOptions'])
+        );
+    }
+
+    public function testDestroy()
+    {
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.delete')
+            ->signIn();
+
+        $post = PostFactory::new()->user($this->user)->create();
+
+        $response = $this
+            ->delete('/admin/posts/' . $post->id);
+
+        $response->assertStatus(200);
+    }
+
+    public function testStore()
+    {
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.create')
+            ->signIn();
+
+        $payload = [
+            %test_controller_store_payload%
+            '_token' => csrf_token(),
+        ];
+        $response = $this
+            ->post('/admin/posts', $payload);
+
+        $response->assertStatus(201);
+    }
+
+    public function testUpdate()
+    {
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.update')
+            ->signIn();
+
+        $post = PostFactory::new()->user($this->user)->create();
+
+        $payload = [
+            %test_controller_update_payload%
+            '_token' => csrf_token(),
+        ];
+
+        $response = $this
+            ->put('/admin/posts/' . $post->id, $payload);
+
+        $response->assertStatus(200);
+    }
+
+    public function testIndex()
+    {
+        $this
+            ->setRole(RoleId::Admin)
+            ->setPermission('admin.content.posts.read')
+            ->signIn();
+
+        PostFactory::new()->count(2)->user($this->user)->create();
+
+        $response = $this
+            ->get('/admin/posts?page=1&perPage=2');
+
+        $response->assertStatus(200);
+
+        $this->assertTrue(
+            isset($response->json()['data']) && count($response->json()['data']) === 2
+        );
+
+    }
+}

@@ -1,0 +1,44 @@
+<?php
+
+namespace App\Modules\Admin\Posts\Services;
+
+use App\Models\Post;
+use App\Modules\Admin\Posts\Forms\PostForm;
+use App\Repositories\PostRepository;
+use Illuminate\Http\Request;
+
+class PostsService
+{
+    public function __construct(
+        protected PostRepository $postRepository,
+    ) {
+        //
+    }
+
+    public function getAdminItemsQuery(Request $request)
+    {
+        return $this->postRepository
+            ->query()
+            ->with([
+                'category',
+            ]);
+    }
+
+    public function getForm(Post $post = null)
+    {
+        return new PostForm($post);
+    }
+
+    public function store($data)
+    {
+        // Use Transactions here
+        // Manage related entities and operations here
+        // Trigger Events here.
+        return $this->postRepository->createPost($data);
+    }
+
+    public function update(Post $post, $data)
+    {
+        return $this->postRepository->updatePost($post, $data);
+    }
+}
