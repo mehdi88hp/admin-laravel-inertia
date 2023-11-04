@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Modules\Admin\Posts\Resources;
+namespace Kaban\Components\Admin\Posts\Resources;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class PostListResource extends JsonResource
+class PostResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,16 +17,9 @@ class PostListResource extends JsonResource
         return [
             'id' => $this->id,
             'state' => $this->state,
-            'state_enum' => $this->stateEnum,
             'title' => $this->title,
-            'category' => $this->category?->only([
-                'id',
-                'title',
-            ]),
-            'author' => $this->author?->only([
-                'id',
-                'full_name',
-            ]),
+            'category_id' => $this->category_id,
+            'author_id' => $this->author_id,
         ];
     }
 }

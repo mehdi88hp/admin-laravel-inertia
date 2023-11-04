@@ -1,6 +1,6 @@
 <?php
 
-use App\Modules\Admin\Posts\Controllers\PostsController;
+use Kaban\Components\Admin\Posts\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware(['admin'])
