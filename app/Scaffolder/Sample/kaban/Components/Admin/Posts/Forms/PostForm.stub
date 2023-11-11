@@ -2,12 +2,12 @@
 
 namespace Kaban\Components\Admin\Posts\Forms;
 
-use App\Enums\Posts\PostStatus;
-use App\Services\Forms\Fields\ID;
-use App\Services\Forms\Fields\RemoteSelect;
-use App\Services\Forms\Fields\Select;
-use App\Services\Forms\Fields\Text;
-use App\Services\Forms\Form;
+use Kaban\Enums\Posts\PostStatus;
+use Kaban\Services\Forms\Fields\ID;
+use Kaban\Services\Forms\Fields\RemoteSelect;
+use Kaban\Services\Forms\Fields\Select;
+use Kaban\Services\Forms\Fields\Text;
+use Kaban\Services\Forms\Form;
 
 class PostForm extends Form
 {

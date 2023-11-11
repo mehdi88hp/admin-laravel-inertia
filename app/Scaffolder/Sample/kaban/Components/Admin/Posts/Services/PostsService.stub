@@ -2,9 +2,9 @@
 
 namespace Kaban\Components\Admin\Posts\Services;
 
-use App\Models\Post;
+use Kaban\Models\Post;
 use Kaban\Components\Admin\Posts\Forms\PostForm;
-use App\Repositories\PostRepository;
+use Kaban\Repositories\PostRepository;
 use Illuminate\Http\Request;
 
 class PostsService

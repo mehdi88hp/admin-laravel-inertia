@@ -2,8 +2,8 @@
 
 namespace Kaban\Components\Admin\Posts\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Models\Post;
+use Kaban\Http\Controllers\Controller;
+use Kaban\Models\Post;
 use Kaban\Components\Admin\Posts\Forms\PostForm;
 use Kaban\Components\Admin\Posts\Requests\StorePostRequest;
 use Kaban\Components\Admin\Posts\Requests\UpdatePostRequest;
@@ -11,9 +11,9 @@ use Kaban\Components\Admin\Posts\Resources\PostFormResource;
 use Kaban\Components\Admin\Posts\Resources\PostListResource;
 use Kaban\Components\Admin\Posts\Resources\PostResource;
 use Kaban\Components\Admin\Posts\Services\PostsService;
-use App\Services\DataTable\DataTable;
-use App\Services\Forms\FieldsResource;
-use App\Services\Forms\FormResource;
+use Kaban\Services\DataTable\DataTable;
+use Kaban\Services\Forms\FieldsResource;
+use Kaban\Services\Forms\FormResource;
 use Illuminate\Http\Request;
 
 class PostsController extends Controller

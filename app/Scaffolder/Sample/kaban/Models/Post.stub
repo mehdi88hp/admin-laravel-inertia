@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Scaffolder\Sample\app\Models;
+namespace Kaban\Scaffolder\Sample\app\Models;
 
-use App\Enums\Posts\PostStatus;
-use App\Models\Category;
-use App\Models\Traits\HasCreatorAndUpdater;
-use App\Models\Traits\HasState;
-use App\Models\User;
+use Kaban\Enums\Posts\PostStatus;
+use Kaban\Models\Category;
+use Kaban\Models\Traits\HasCreatorAndUpdater;
+use Kaban\Models\Traits\HasState;
+use Kaban\Models\User;
 use Database\Factories\PostFactory;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

@@ -2,7 +2,7 @@
 
 namespace Kaban\Components\Admin\Posts\Requests;
 
-use App\Enums\Core\State;
+use Kaban\Enums\Core\State;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Validation\Rule;
