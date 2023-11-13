@@ -15,6 +15,13 @@ class ScaffolderController
         ]);
     }
 
+    public function test()
+    {
+        return Inertia::render('test', [
+            'appUrl' => config('app.url')
+        ]);
+    }
+
     public function store(StoreRequest $request)
     {
         (new MainService)

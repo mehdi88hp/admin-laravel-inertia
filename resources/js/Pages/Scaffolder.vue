@@ -3,7 +3,7 @@
         <form class=" form-inline m-5">
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputEmail">Component Name</label>
+                    <label for="inputEmail">Component Name (singular and lower case)</label>
                     <input type="email" v-model="form.states.componentName" class="form-control" id="inputEmail">
                 </div>
             </div>
@@ -20,7 +20,8 @@
                         class="btn btn-primary mt-3"
                         :disabled="form.states.disableSending"
                         @click.prevent="form.actions.send(appUrl)"
-                >Submit</button>
+                >Submit
+                </button>
             </div>
         </form>
     </div>

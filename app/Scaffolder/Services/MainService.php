@@ -45,7 +45,7 @@ class MainService
 
         Process::command(base_path() . '/vendor/bin/pint ../target')->run();
 
-        ZipService::zip(base_path() . '/target', $this->componentName);
+//        ZipService::zip(base_path() . '/target', $this->componentName);
     }
 
     public function makeNewFile($path)
