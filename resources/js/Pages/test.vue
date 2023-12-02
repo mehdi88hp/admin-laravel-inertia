@@ -1,15 +1,15 @@
 <template>
-    <v-app>
-        <v-container>
-            <v-btn>Click Me!</v-btn>
-        </v-container>
-    </v-app>
+
+<AdminLayout>
+    <Link href="/foo">Foo</Link>
+    <v-btn @click="">Click Me2!</v-btn>
+</AdminLayout>
+
 </template>
 
-<script>
-    export default {
-        data() {
-            return {}
-        }
-    }
+<script setup>
+import { Link } from '@inertiajs/vue3'
+import AdminLayout from "@/AdminLayout/AdminLayout.vue";
+import '@mdi/font/css/materialdesignicons.css' // Ensure you are using css-loader
+
 </script>
