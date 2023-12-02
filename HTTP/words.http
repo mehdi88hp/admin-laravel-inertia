@@ -1,0 +1,5 @@
+###not working ,looks like admin.last6.local must be registered somewhere
+GET http://admin.last6.local/words
+Content-Type: application/xhtml+xml
+
+###

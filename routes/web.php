@@ -1,11 +1,8 @@
 <?php
 
-use App\Scaffolder\Services\ZipService;
-use Illuminate\Support\Facades\Process;
+use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Kaban\Components\Admin\Airlines\Controllers\AirlinesController;
-use Symfony\Component\VarDumper\VarDumper;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,10 +14,25 @@ use Symfony\Component\VarDumper\VarDumper;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', fn() => '<h1>welcome to scaffolder 🎃</h1>');
 
-Route::get('/test', [\App\Scaffolder\Controllers\ScaffolderController::class, 'test'])
-    ->name('test');
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
 
 Route::get('/foo', [\App\Scaffolder\Controllers\ScaffolderController::class, 'foo'])
     ->name('foo');
