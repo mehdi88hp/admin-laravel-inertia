@@ -1,5 +1,13 @@
+POST http://{{adminUrl}}/words/bulk
+Content-Type: application/json
+
+{
+  "content": "hellox, what is your name"
+}
+
+###
 ###not working ,looks like admin.last6.local must be registered somewhere
-GET http://admin.last6.local/words
+GET http://{{adminUrl}}/words?x=22&y=55
 Content-Type: application/xhtml+xml
 
 ###

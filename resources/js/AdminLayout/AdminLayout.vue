@@ -6,13 +6,13 @@
             theme="dark"
         >
             <v-list nav>
-                <v-list-item prepend-icon="mdi-email" title="Inbox" value="users" >
+                <v-list-item prepend-icon="mdi-email" title="Inbox" value="users">
                     <v-btn :to="'/foo'">
                         xxx
                     </v-btn>
                 </v-list-item>
                 <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors">aaa</v-list-item>
-                <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin">www</v-list-item>
+                <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin" @click="navigateTo('foo')">Words</v-list-item>
             </v-list>
         </v-navigation-drawer>
 
@@ -53,13 +53,18 @@
 </template>
 
 <script setup>
-import {ref} from 'vue'
+    import { ref } from 'vue'
+    import { router } from '@inertiajs/vue3';
 
-const drawer = ref(null)
-const icons = ref([
-    'mdi-facebook',
-    'mdi-twitter',
-    'mdi-linkedin',
-    'mdi-instagram',
-])
+    const navigateTo = (routeName) => {
+        router.visit(route(routeName));
+    }
+
+    const drawer = ref(null)
+    const icons = ref([
+        'mdi-facebook',
+        'mdi-twitter',
+        'mdi-linkedin',
+        'mdi-instagram',
+    ])
 </script>

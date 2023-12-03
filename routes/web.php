@@ -36,3 +36,15 @@ Route::middleware([
 
 Route::get('/foo', [\App\Scaffolder\Controllers\ScaffolderController::class, 'foo'])
     ->name('foo');
+
+const COMPONENT_ROOT = __DIR__ . '/../modules/Components/';
+
+require COMPONENT_ROOT . 'General/route.php';
+require COMPONENT_ROOT . 'Admin/User/route.php';
+require COMPONENT_ROOT . 'Admin/Word/route.php';
+
+Route::get('/tokens/create', function (Request $request) {
+    $token = $request->user()->createToken($request->token_name);
+
+    return ['token' => $token->plainTextToken];
+});
