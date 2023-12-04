@@ -4,13 +4,16 @@ namespace Modules\Components\Admin\Word\Controllers;
 
 
 use Illuminate\Support\Facades\Request;
+use Inertia\Inertia;
 use Modules\Components\Admin\Word\Services\WordsService;
 
 class WordsController
 {
     public function index()
     {
-        return (request()->all());
+        return Inertia::render('Words/Index', [
+            'appUrl' => config('app.url')
+        ]);
     }
 
     public function bulkInsert(Request $request, WordsService $wordsService)
