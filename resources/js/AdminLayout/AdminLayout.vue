@@ -7,11 +7,9 @@
         >
             <v-list nav>
                 <v-list-item prepend-icon="mdi-email" title="Inbox" value="users">
-                    <v-btn :to="'/foo'">
-                        xxx
-                    </v-btn>
                 </v-list-item>
-                <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors">aaa</v-list-item>
+                <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors"><span v-inertia-link="'foo'">reddddddddd</span></v-list-item>
+
                 <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin" @click="navigateTo('foo')">Words</v-list-item>
             </v-list>
         </v-navigation-drawer>

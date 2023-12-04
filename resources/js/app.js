@@ -30,6 +30,7 @@ import 'vuetify/styles'
 import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
+import { router } from '@inertiajs/vue3';
 
 const vuetify = createVuetify({
     components,
@@ -49,9 +50,16 @@ createInertiaApp({
         return pages[`./Pages/${name}.vue`]
     },
     setup({el, App, props, plugin}) {
-        createApp({render: () => h(App, props)})
+       createApp({render: () => h(App, props)})
             .use(plugin)
             .use(vuetify)
+            .directive('inertia-link', {
+                mounted(el, binding, vnode, prevVnode) {
+                    el.addEventListener('click', () => {
+                        router.visit(route(binding.value));
+                    })
+                },
+            })
             .mount(el)
     },
 })
