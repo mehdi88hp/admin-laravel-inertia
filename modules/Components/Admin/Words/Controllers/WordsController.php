@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Components\Admin\Word\Controllers;
+namespace Modules\Components\Admin\Words\Controllers;
 
 
 use Illuminate\Support\Facades\Request;
