@@ -3,22 +3,33 @@
 namespace Modules\Components\Admin\Settings\Controllers;
 
 
-use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
-use Modules\Components\Admin\Setting\Services\SettingsService;
+use Modules\Models\Setting;
 
 class SettingsController
 {
+    public $generalSettings = [
+        'siteName' => ['label' => 'site name', 'value' => ''],
+        'canonical' => ['label' => 'canonical', 'value' => ''],
+        'favIcon' => ['label' => 'page fav icon', 'value' => ''],
+    ];
+
     public function index()
     {
+        foreach ($this->generalSettings as $key => $generalSetting) {
+            $this->generalSettings[$key]['value'] = Setting::get($key);
+        }
         return Inertia::render('Settings/Index', [
-            'appUrl' => config('app.url')
+            'appUrl' => config('app.url'),
+            'generalSettings' => $this->generalSettings
         ]);
     }
 
-    public function bulkInsert(Request $request, SettingsService $SettingsService)
+    public function store()
     {
-        return $SettingsService->bulkInsert(request('content'));
+        foreach ($this->generalSettings as $key => $generalSetting) {
+            Setting::set($key, request('generalSettings')[$key]['value']);
+        }
+        Setting::save();
     }
-
 }

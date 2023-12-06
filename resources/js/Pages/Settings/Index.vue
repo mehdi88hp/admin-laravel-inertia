@@ -5,14 +5,15 @@
                 <v-col
                     cols="12"
                     sm="12"
+                    v-for="key in Object.keys(generalSettings)"
                 >
                     <v-textarea
-                        label="One row"
+                        :label="generalSettings[key].label"
                         auto-grow
                         variant="outlined"
                         rows="1"
                         row-height="15"
-                        v-model="content"
+                        v-model="generalSettings[key].value"
                     ></v-textarea>
                 </v-col>
                 <v-col cols="12">
@@ -26,15 +27,22 @@
 </template>
 
 <script setup>
-    import { ref } from 'vue'
+    import { reactive, ref } from 'vue'
     import axios from "axios";
     import AdminLayout from "@/AdminLayout/AdminLayout.vue";
 
-    let content = ref('');
+    const props = defineProps({
+        appUrl: String,
+        generalSettings: Object,
+    })
+
+    let generalSettings = reactive({
+        ...props.generalSettings
+    });
     const save = () => {
-        // axios.post('http://admin.last6.local/words/bulk', {
-        //     content: content.value,
-        // }).then(r => console.log(r))
+        axios.post('http://admin.last6.local/settings', {
+            generalSettings,
+        }).then(r => console.log(r))
     }
 </script>
 

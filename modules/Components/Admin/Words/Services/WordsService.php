@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Components\Admin\Word\Services;
+namespace Modules\Components\Admin\Words\Services;
 
 use Modules\Models\Word;
 

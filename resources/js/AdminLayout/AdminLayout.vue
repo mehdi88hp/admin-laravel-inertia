@@ -1,7 +1,8 @@
 <template>
     <v-app id="inspire">
+        <!--        image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"-->
+
         <v-navigation-drawer
-            image="https://cdn.vuetifyjs.com/images/backgrounds/bg-2.jpg"
             v-model="drawer"
             theme="dark"
         >

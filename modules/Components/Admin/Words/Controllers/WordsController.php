@@ -5,7 +5,7 @@ namespace Modules\Components\Admin\Words\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
-use Modules\Components\Admin\Word\Services\WordsService;
+use Modules\Components\Admin\Words\Services\WordsService;
 
 class WordsController
 {
