@@ -7,9 +7,33 @@
             theme="dark"
         >
             <v-list nav>
-                <v-list-item prepend-icon="mdi-account-supervisor-circle" title="Supervisors" value="supervisors"><span v-inertia-link="'settings.index'">Settings</span></v-list-item>
+                <v-list-item v-inertia-link="'settings.index'" prepend-icon="mdi-account-supervisor-circle" title="" value="supervisors"><span>Settings</span></v-list-item>
 
-                <v-list-item prepend-icon="mdi-clock-start" title="Clock-in" value="clockin" v-inertia-link="'words.index'">Words</v-list-item>
+                <v-list-item v-inertia-link="'words.index'" prepend-icon="mdi-clock-start" title="" value="clockin">Words</v-list-item>
+                <v-list-group value="Song" prepend-icon="mdi-clock-start">
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                            v-bind="props"
+                            title="Song"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        title="list"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'songs.index'"
+                        value="list"
+                    ></v-list-item>
+
+                    <v-list-item
+                        title="create"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'songs.create'"
+                        value="create"
+                    ></v-list-item>
+
+
+                </v-list-group>
             </v-list>
         </v-navigation-drawer>
 

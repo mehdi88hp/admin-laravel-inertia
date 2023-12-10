@@ -16,6 +16,10 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
+//    cache()->remember('xxx', -1, function () {
+//        return 5;
+//    });
+//    dd(cache()->get('xxx'));
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
@@ -43,6 +47,7 @@ require COMPONENT_ROOT . 'General/route.php';
 require COMPONENT_ROOT . 'Admin/User/route.php';
 require COMPONENT_ROOT . 'Admin/Words/route.php';
 require COMPONENT_ROOT . 'Admin/Settings/route.php';
+require COMPONENT_ROOT . 'Admin/Songs/route.php';
 
 Route::get('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken($request->token_name);
