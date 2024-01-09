@@ -14,6 +14,7 @@ return new class extends Migration {
             $table->bigIncrements('id');
             $table->string('word');
             $table->tinyInteger('verified')->nullable();
+            $table->dateTime('dic_dot_com_last_updated_at')->nullable();
             $table->string('type')->nullable();
             $table->timestamps();
         });

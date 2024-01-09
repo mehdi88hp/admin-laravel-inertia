@@ -20,6 +20,8 @@
         "predis/predis": "^2.2",
         "spatie/laravel-medialibrary": "^11.0",
         "spatie/laravel-permission": "^6.1",
+        "symfony/browser-kit": "^6.4",
+        "symfony/dom-crawler": "^6.4",
         "tightenco/ziggy": "^1.0"
     },
     "require-dev": {

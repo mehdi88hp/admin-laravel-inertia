@@ -15,10 +15,28 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/cr', [\App\Crawler\Controllers\TestController::class, 'test']);
+Route::get('/cr/preview/{id}', [\App\Crawler\Controllers\TestController::class, 'preview']);
+Route::get('/cr/process/{id}', [\App\Crawler\Controllers\TestController::class, 'process']);
+
+Route::get('/test', function () {
+//    cache()->remember('xxx', -1, function () {
+//        return 5;
+//    });
+//    dd(cache()->get('xxx'));
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
 Route::get('/', function () {
 //    cache()->remember('xxx', -1, function () {
 //        return 5;
 //    });
+    dd(132);
 //    dd(cache()->get('xxx'));
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -48,6 +66,7 @@ require COMPONENT_ROOT . 'Admin/User/route.php';
 require COMPONENT_ROOT . 'Admin/Words/route.php';
 require COMPONENT_ROOT . 'Admin/Settings/route.php';
 require COMPONENT_ROOT . 'Admin/Songs/route.php';
+require COMPONENT_ROOT . 'Admin/CrawlData/route.php';
 
 Route::get('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken($request->token_name);
