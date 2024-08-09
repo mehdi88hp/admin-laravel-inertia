@@ -64,6 +64,7 @@ const COMPONENT_ROOT = __DIR__ . '/../modules/Components/';
 require COMPONENT_ROOT . 'General/route.php';
 require COMPONENT_ROOT . 'Admin/User/route.php';
 require COMPONENT_ROOT . 'Admin/Words/route.php';
+require COMPONENT_ROOT . 'Admin/Auth/route.php';
 require COMPONENT_ROOT . 'Admin/Settings/route.php';
 require COMPONENT_ROOT . 'Admin/Songs/route.php';
 require COMPONENT_ROOT . 'Admin/CrawlData/route.php';
