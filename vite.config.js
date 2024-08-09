@@ -25,7 +25,11 @@ export default defineConfig({
     // },
     server: {
         https: false,
-        host: true,
-        hmr: 'admin.last6.local',
+        host: '172.20.21.100', // Bind to all network interfaces
+        hmr: {
+            host: '172.20.21.100', // HMR connections should use localhost
+            protocol: 'ws', // Use WebSocket for HMR
+        },
+        port: 5173,
     },
 });

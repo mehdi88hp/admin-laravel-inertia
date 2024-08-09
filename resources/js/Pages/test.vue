@@ -2,7 +2,7 @@
 
 <AdminLayout>
     <Link href="/foo">Foo</Link>
-    <v-btn @click="">Click Me2!</v-btn>
+    <v-btn @click="">Click Me4!</v-btn>
 </AdminLayout>
 
 </template>
