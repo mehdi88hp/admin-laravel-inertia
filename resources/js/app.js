@@ -32,6 +32,10 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import { router } from '@inertiajs/vue3';
 
+import axios from 'axios'
+
+axios.defaults.withCredentials = true
+
 const vuetify = createVuetify({
     components,
     directives,

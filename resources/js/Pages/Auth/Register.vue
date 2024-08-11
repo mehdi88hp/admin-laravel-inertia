@@ -121,7 +121,6 @@ export default {
     },
     methods: {
         save() {
-            console.log(this)
             return axios.post(this.appUrl + '/auth/register', {...this.form}).then(r => {
                 this.snackbar = true;
 

@@ -5,7 +5,7 @@ namespace Modules\Components\Admin\Words\Controllers;
 
 use Illuminate\Support\Facades\Request;
 use Inertia\Inertia;
-use Modules\Components\Admin\Words\Services\WordsService;
+use Modules\Components\Admin\Words\Services\AuthService;
 
 class WordsController
 {
@@ -16,7 +16,7 @@ class WordsController
         ]);
     }
 
-    public function bulkInsert(Request $request, WordsService $wordsService)
+    public function bulkInsert(Request $request, AuthService $wordsService)
     {
         return $wordsService->bulkInsert(request('content'));
     }
