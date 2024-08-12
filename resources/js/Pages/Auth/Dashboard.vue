@@ -17,17 +17,21 @@
 
 <script>
 import { defineComponent } from 'vue'
-import { useForm } from '@inertiajs/vue3'
+import {router, useForm} from '@inertiajs/vue3'
+import axios from "axios";
 
 export default defineComponent({
     props: {
         user: Object,
+        appUrl: String,
     },
-    setup() {
+    setup(props) {
         const form = useForm({})
 
-        const logout = () => {
-            form.post(route('logout'))
+        function logout(){
+            axios.post(props.appUrl + '/auth/logout').then(r => {
+                router.visit('/auth/login')
+            })
         }
 
         return { logout }

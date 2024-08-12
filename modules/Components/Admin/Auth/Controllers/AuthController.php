@@ -94,7 +94,7 @@ class AuthController
         // Remove the auth_token cookie
         $cookie = Cookie::forget('auth_token');
 
-        return redirect('/')->withCookie($cookie);
+        return response('you\'ve logged out!');
     }
 
     public function dashboard(Request $request)
@@ -103,6 +103,7 @@ class AuthController
         $user = $request->user();
 
         return Inertia::render('Auth/Dashboard', [
+            'appUrl' => config('app.url'),
             'user' => $user->only(['id', 'name', 'email']),
         ]);
     }
