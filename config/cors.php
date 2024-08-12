@@ -19,7 +19,7 @@ return [
 
     'allowed_methods' => ['*'],
 
-    'allowed_origins' => ['api.blang.local'],
+    'allowed_origins' => ['*'],
 
     'allowed_origins_patterns' => [],
 
