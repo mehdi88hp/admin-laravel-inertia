@@ -56,12 +56,13 @@ class AuthController
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            return redirect()->intended('/dashboard');
+            return response('logged in');
         }
 
-        return back()->withErrors([
-            'email' => 'The provided credentials do not match our records.',
-        ]);
+        return response('logged in',401);
+//        return back()->withErrors([
+//            'email' => 'The provided credentials do not match our records.',
+//        ]);
 
     }
 
