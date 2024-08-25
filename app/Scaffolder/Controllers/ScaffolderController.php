@@ -55,6 +55,7 @@ class ScaffolderController
 
     public function foo()
     {
+        dd(dd(scandir(public_path('storage/public/genres'))));
         return Inertia::render('foo', [
             'appUrl' => config('app.url')
         ]);

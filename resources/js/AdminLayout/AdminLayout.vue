@@ -34,6 +34,56 @@
 
 
                 </v-list-group>
+
+                <v-list-group value="Book" prepend-icon="mdi-clock-start">
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                            v-bind="props"
+                            title="Book"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        title="list"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'books.index'"
+                        value="list"
+                    ></v-list-item>
+
+                    <v-list-item
+                        title="create"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'books.create'"
+                        value="create"
+                    ></v-list-item>
+
+
+                </v-list-group>
+
+                <v-list-group value="Genre" prepend-icon="mdi-clock-start">
+                    <template v-slot:activator="{ props }">
+                        <v-list-item
+                            v-bind="props"
+                            title="Genre"
+                        ></v-list-item>
+                    </template>
+
+                    <v-list-item
+                        title="list"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'genres.index'"
+                        value="list"
+                    ></v-list-item>
+
+                    <v-list-item
+                        title="create"
+                        prepend-icon="mdi-clock-start"
+                        v-inertia-link="'genres.create'"
+                        value="create"
+                    ></v-list-item>
+
+
+                </v-list-group>
             </v-list>
         </v-navigation-drawer>
 

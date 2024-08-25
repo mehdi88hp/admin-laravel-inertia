@@ -36,6 +36,10 @@ Route::get('/', function () {
 //    cache()->remember('xxx', -1, function () {
 //        return 5;
 //    });
+
+    /*TODO: tomorrow tasks
+    create a file input and send it to here as request file and try to save it with filesysetem
+    */
     dd(132);
 //    dd(cache()->get('xxx'));
     return Inertia::render('Welcome', [
@@ -68,6 +72,8 @@ require COMPONENT_ROOT . 'Admin/Auth/route.php';
 require COMPONENT_ROOT . 'Admin/Settings/route.php';
 require COMPONENT_ROOT . 'Admin/Songs/route.php';
 require COMPONENT_ROOT . 'Admin/CrawlData/route.php';
+require COMPONENT_ROOT . 'Admin/Books/route.php';
+require COMPONENT_ROOT . 'Admin/Genres/route.php';
 
 Route::get('/tokens/create', function (Request $request) {
     $token = $request->user()->createToken($request->token_name);

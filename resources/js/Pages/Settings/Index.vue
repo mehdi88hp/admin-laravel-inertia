@@ -40,7 +40,7 @@
         ...props.generalSettings
     });
     const save = () => {
-        axios.post('http://admin.last6.local/settings', {
+        axios.post('/settings', {
             generalSettings,
         }).then(r => console.log(r))
     }
